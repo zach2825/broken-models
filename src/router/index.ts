@@ -1,3 +1,5 @@
+import ApiTestView from '@/views/ApiTestView.vue';
+import FormView from '@/views/FormView.vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -6,6 +8,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: FormView
+  },
+  {
+    path: '/api-test',
+    name: 'api-test',
+    component: ApiTestView
   },
   {
     path: '/about',

@@ -4,15 +4,23 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@vuex-orm/core": "^0.36.4",
+    "axios": "^1.2.5",
     "core-js": "^3.8.3",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.0",
+    "vee-validate": "^4.7.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@types/uuid": "^9.0.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
