@@ -2,7 +2,10 @@
   <Form @submit="onSubmit1">
     <slot />
   </Form>
-  <input type="checkbox" v-model="changed" />
+  <label>
+    changed: {{ changed }};
+    <input type="checkbox" v-model="changed" />
+  </label>
 </template>
 <script lang="ts">
 import { eventBus } from '@/main';
@@ -21,17 +24,28 @@ export default defineComponent({
     }
   },
 
-  mounted () {
-    eventBus.on('beforeRouteLeave', async (next) => {
-      if (this.changed) {
-        if (confirm('Sure?')) {
-          eventBus.off('beforeRouteLeave')
+  computed: {
+    formChangedCallback () {
+      return (next: any) => {
+        if (this.changed) {
+          if (confirm('Sure?')) {
+            eventBus.off('beforeRouteLeave', this.formChangedCallback)
+            next()
+          }
+        } else {
           next()
         }
-      } else {
-        next()
       }
-    })
+    },
+  },
+
+  mounted () {
+    eventBus.on('beforeRouteLeave', this.formChangedCallback)
+  },
+
+  beforeUnmount () {
+    this.changed = false
+    eventBus.off('beforeRouteLeave', this.formChangedCallback)
   },
 
   methods: {

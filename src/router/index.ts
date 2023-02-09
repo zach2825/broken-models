@@ -1,24 +1,21 @@
 import { eventBus } from '@/main';
-import ApiTestView from '@/views/ApiTestView.vue';
-import FormView from '@/views/FormView.vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'home',
-        component: HomeView,
+        component: () => import('../views/HomeView.vue'),
     },
     {
         path: '/form',
         name: 'form',
-        component: FormView,
+        component: () => import('@/views/FormView.vue'),
     },
     {
         path: '/api-test',
         name: 'api-test',
-        component: ApiTestView,
+        component: () => import('@/views/ApiTestView.vue'),
     },
     {
         path: '/about',
