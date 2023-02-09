@@ -1,9 +1,11 @@
 <template>
   <Form @submit="onSubmit1">
-  <slot />
+    <slot />
   </Form>
+  <input type="checkbox" v-model="changed" />
 </template>
 <script lang="ts">
+import { eventBus } from '@/main';
 import { debounce } from 'lodash';
 import { Form } from 'vee-validate';
 import { defineComponent } from 'vue';
@@ -13,8 +15,23 @@ export default defineComponent({
 
   components: {Form},
 
-  props: {
+  data () {
+    return {
+      changed: false,
+    }
+  },
 
+  mounted () {
+    eventBus.on('beforeRouteLeave', async (next) => {
+      if (this.changed) {
+        if (confirm('Sure?')) {
+          eventBus.off('beforeRouteLeave')
+          next()
+        }
+      } else {
+        next()
+      }
+    })
   },
 
   methods: {
@@ -30,7 +47,7 @@ export default defineComponent({
       console.log('methods.onSubmit1', {formValues, callbacks})
       // @ts-ignore
       this.$emit('submitted', formValues, callbacks);
-    }, 1000, {leading: true, trailing: false})
+    }, 1000, {leading: true, trailing: false}),
   },
 
 })

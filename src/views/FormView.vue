@@ -1,6 +1,16 @@
 <template>
   <BaseForm @submitted="onSubmit">
 
+    <FormWrapper>
+      <template #header>
+        This is a header!
+      </template>
+
+      <template #c>slot b</template>
+
+      <div>this is working</div>
+    </FormWrapper>
+
     <custom-input
         name="email"
         type="email"
@@ -36,6 +46,7 @@ formValues: {{ formValues }};
 import BaseButton from '@/components/BaseButton.vue';
 import BaseForm from '@/components/BaseForm.vue';
 import CustomInput from '@/components/CustomInput.vue';
+import FormWrapper from '@/components/FormWrapper.vue';
 import { debounce } from 'lodash';
 import { defineComponent } from 'vue';
 
@@ -43,6 +54,7 @@ export default defineComponent({
   name: 'FormView',
 
   components: {
+    FormWrapper,
     BaseButton,
     BaseForm,
     CustomInput,

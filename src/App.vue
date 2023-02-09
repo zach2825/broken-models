@@ -3,7 +3,10 @@
     <router-link to="/">Home</router-link>
     |
     <router-link to="/about">About</router-link>
+    |
     <router-link to="/api-test">Api Test</router-link>
+    |
+    <router-link to="/form">Forms</router-link>
   </nav>
   <router-view />
 </template>
